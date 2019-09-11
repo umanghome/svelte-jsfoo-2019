@@ -8,7 +8,7 @@
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/simple.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
@@ -25,8 +25,65 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>Rethinking Frontend Apps with Svelte</h1>
+					<h4><a href="https://svelte.dev">svelte.dev</a></h4>
+
+					<aside class="notes" data-merkdown>
+						- Welcome to this talk about Svelte. Svelte is a framework for building UIs, and it's slightly different than the ones that we're used to.
+						- Thank you for coming out here today. It's slightly earlier in the morning than I'm used to, but not getting nervous sitting through the talks of other amazing speakers is a bonus I didn't want to let go of.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Eras of JavaScript</h2>
+					<ol>
+						<li class="fragment">jQuery</li>
+						<li class="fragment">React</li>
+						<li class="fragment">???</li>
+					</ol>
+					<aside class="notes" data-markdown>
+						- Let's talk about some eras of JavaScript.
+						- When most of us started web dev, we started out with jQuery. jQuery was nice because there were a lot of inconsistencies between Browser APIs, and it just made manipulating the DOM easier. Then, the ecosystem around it gave rise to tons of plugins that we could use to create all sorts of different user interfaces.
+						- Then came along React, and fundamentally changed how we wrote UI. We started thinking about parts of the UI as components, and extending those components using ideas like composition. The ecosystem around React developed too and we got lots of libraries that allowed us to build better UI components. Of course when I say React here, it's true for other libraries like Vue and Angular too. Then came along SSR and hydration to make our frontend apps seem faster.
+						- Now, we have to ask ourselves: what's next? Just like React made the libraries and frameworks before it seem _meh_, what would we be seeing in the near future that would make React and it's friends seem _meh_? Could it be a framework that makes code easier and quicker to write, and runs faster with lesser processing overhead so that we can target browsers that run on lower-powered devices? Could it be Svelte and other frameworks that would eventually develop on its ideas?
+					</aside>
+				</section>
+
+				<section>
+					<h3>Where have I heard about Svelte before?</h3>
+				</section>
+
+				<section data-background-image="assets/chrome_dev_summit.png">
+					<aside class="notes" data-markdown>
+						- At Chrome Dev Summit 2018, the Chrome team decided to help make frameworks faster and less memory-intrusive. They were comparing different frameworks and had things to say about all the popular frameworks and libraries of the time.
+						- They mentioned Svelte, along with the fact that it's already super fast and there's not many performance gains that can happen anymore.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Reactivity and Spreadsheets</h2>
+					<aside class="notes" data-markdown>
+						- Spreadsheets are extremely powerful. There's a reason why they run so much for the business-world.
+						- I realized how powerful and convenient they are when a very close, non-programmer, friend of mine asked for a utility that would allow the people at his factory generate labels that runs offline. These labels would also have images for each product in their catalogue.
+						- Of course, because I'm a web dev, I suggested we build a PWA or an Electron app that has a list of products in the catalogue and text fields to enter details. Labels would be generated based on the data, and a print-view would allow the user to print these labels. All of this would take some time to build. And I'd have to do any changes as and when they would be needed.
+						- After a pause of about six seconds, he asked if we can do this using Microsoft Excel. Excel uses VBScript for programming, and I knew nothing about VBScript.
+						- Both of us looked into it and eventually we created an Excel file which had a sheet with the list of products in their catalogue, and pictures of each product would be present with the name product_code.jpg in the same directory.
+						- There would be another sheet where the user would select the product from a dropdown and enter some other details. In a third sheet, labels would be generated based on this data, and then the user could just go ahead and print the third sheet.
+						- Now this is extremely simple for a factory worker to use. It's super easy for my friend to customize this since it would only require Excel formulae. And the only "code" that exists here is some VBScript to fetch the image of a product and place it in an Excel sheet.
+						- If I had still gone with the PWA or Electron route, this would have been slightly difficult to the users and impossible for my friend to make any customizations by himself.
+						- Speaking of these customizations, these Excel formulae were as simple as one cell depending upon the value of another cell. This uses something known as "forward-referencing".
+					</aside>
+				</section>
+
+				<section>
+					<h3>Forward Referencing</h3>
+
+					<aside class="notes" data-markdown>
+						- Forward-referencing would tell the underlying system to update the value of Cell A only when the value of Cell B changes.
+						- In other words, when the value of Cell B changes, we do not want to update, or "re-render", the entire spreadsheet. We're interested in updating only those cells whose values depend on Cell B.
+					</aside>
+				</section>
 			</div>
 		</div>
 
