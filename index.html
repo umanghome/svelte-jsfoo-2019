@@ -11,7 +11,46 @@
 		<link rel="stylesheet" href="css/theme/simple.css">
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/monokai.css">
+		<link rel="stylesheet" href="lib/css/github.css">
+		<link rel="stylesheet" href="lib/css/a11ylight.css">
+
+		<style>
+			.monospace {
+				font-family: monospace !important;
+			}
+
+			section.example {
+				height: 100%;
+				width: 100%;
+			}
+
+			section.example iframe {
+				height: 100%;
+				width: 100%;
+			}
+
+			.split {
+				display: flex;
+			}
+
+			.column {
+				flex: 1;
+				width: 50%;
+			}
+
+			.comparision {
+				text-align: left;
+			}
+
+			.text-center {
+				text-align: center !important;
+			}
+
+			twitter-widget.twitter-tweet {
+				margin-left: auto;
+				margin-right: auto;
+			}
+		</style>
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -29,9 +68,29 @@
 					<h1>Rethinking Frontend Apps with Svelte</h1>
 					<h4><a href="https://svelte.dev">svelte.dev</a></h4>
 
-					<aside class="notes" data-merkdown>
-						- Welcome to this talk about Svelte. Svelte is a framework for building UIs, and it's slightly different than the ones that we're used to.
+					<aside class="notes" data-markdown>
 						- Thank you for coming out here today. It's slightly earlier in the morning than I'm used to, but not getting nervous sitting through the talks of other amazing speakers is a bonus I didn't want to let go of.
+						- Welcome to this talk about Svelte. Svelte is a **framework for building UIs**, and it's a little bit **different than the ones everyone's been using recently**
+					</aside>
+				</section>
+
+				<section>
+					<h2 class="monospace">$ whoami</h2>
+					<aside class="notes" data-markdown>
+						- I'm Umang. 
+						- I'm a **frontend engineer at Razorpay**.
+						- I learnt **HTML in 2005 during the holidays before starting fifth grade, before** my family even **owned a computer**.
+						- I spent years building small webpages to impress friends.
+						- I read about **CSS** while still in school but it felt **intimidating**.
+						- I'm still surprised how far I reached by **using just HTML attributes instead of CSS**.
+						- Tried learning **JavaScript** in highschool but I had **zero Computer Science knowledge**, so it felt very difficult and I **gave up**.
+						- Then, in my **first year** of college I taught myself **CSS** because I wanted to **build all these ideas** that I had in my head.
+						- And then in the **second year**, I taught myself **JavaScript**.
+						- This was **all jQuery**, by the way.
+						- I learned **React in my third year** of college, during 2016. I still hadn't worked a lot with Vanilla JS.
+						- I got **exposed to Vanilla JS during my final year** of college while working with service workers. This was the **first time** I would have **writen a Promise** by myself.
+						- Then, after joining **Razorpay**, I **started working with a lot of Vanilla JS**. Vanilla JS now somehow feels extremely **fun to write**.
+						- Some of this might **seem irrelevant now**, but I'll **come back to these** later in the talk.
 					</aside>
 				</section>
 
@@ -43,36 +102,41 @@
 						<li class="fragment">???</li>
 					</ol>
 					<aside class="notes" data-markdown>
-						- Let's talk about some eras of JavaScript.
-						- When most of us started web dev, we started out with jQuery. jQuery was nice because there were a lot of inconsistencies between Browser APIs, and it just made manipulating the DOM easier. Then, the ecosystem around it gave rise to tons of plugins that we could use to create all sorts of different user interfaces.
-						- Then came along React, and fundamentally changed how we wrote UI. We started thinking about parts of the UI as components, and extending those components using ideas like composition. The ecosystem around React developed too and we got lots of libraries that allowed us to build better UI components. Of course when I say React here, it's true for other libraries like Vue and Angular too. Then came along SSR and hydration to make our frontend apps seem faster.
-						- Now, we have to ask ourselves: what's next? Just like React made the libraries and frameworks before it seem _meh_, what would we be seeing in the near future that would make React and it's friends seem _meh_? Could it be a framework that makes code easier and quicker to write, and runs faster with lesser processing overhead so that we can target browsers that run on lower-powered devices? Could it be Svelte and other frameworks that would eventually develop on its ideas?
+						- Let's talk about some *eras of JavaScript**.
+						- When most of us started web dev, we started out with **jQuery**. jQuery was nice because there were a lot of **inconsistencies between Browser APIs**, and it just made **manipulating the DOM easier**. Then, the ecosystem around it gave rise to **tons of plugins** that we could use to create all sorts of different user interfaces.
+						- Then came along **React**, and fundamentally changed how we wrote UI. We started thinking about parts of the **UI as components**, and extending those components using ideas like **composition**. The ecosystem around React developed too and we got **lots of libraries** that allowed us to build better UI components. Of course when I say React here, it's true for **other libraries like Vue and Angular** too. Then came along **SSR and hydration** to make our frontend apps seem faster.
+						- Now, we have to ask ourselves: **what's next?** Just like React made the libraries and frameworks before it seem _meh_, what would we be seeing in the near future that would make React and it's friends seem _meh_? Could it be a framework that **makes code easier and quicker to write**, and **runs faster with lesser processing overhead** so that we can target browsers that run on **lower-powered devices**? Could it be **_svelte_**? **MOVE TO NEXT SLIDE**
 					</aside>
 				</section>
 
 				<section>
-					<h3>Where have I heard about Svelte before?</h3>
+					<img src="assets/svelte_dictionary.png"" alt="The meaning of 'Svelte' in the dictionary">
+					<aside class="notes" data-markdown>
+						- "Svelte" means **slender**, and **urban**
+						- You might be wonder where have you **heard about Svelte before?** **MOVE TO NEXT SLIDE**
+					</aside>
 				</section>
 
-				<section data-background-image="assets/chrome_dev_summit.png">
+				<section>
+					<img src="assets/chrome_dev_summit.png" alt="Svelte mentioned at Chrome Dev Summit 2018">
 					<aside class="notes" data-markdown>
-						- At Chrome Dev Summit 2018, the Chrome team decided to help make frameworks faster and less memory-intrusive. They were comparing different frameworks and had things to say about all the popular frameworks and libraries of the time.
-						- They mentioned Svelte, along with the fact that it's already super fast and there's not many performance gains that can happen anymore.
+						- At **Chrome Dev Summit 2018**, the **Chrome team decided** to help make **frameworks faster and less memory-intrusive**. They were **comparing different frameworks and had things to say** about all the popular frameworks and libraries of the time.
+						- They **mentioned Svelte**, along with the fact that **it's already super fast** and there's **not many performance gains that can happen** anymore.
 					</aside>
 				</section>
 
 				<section>
 					<h2>Reactivity and Spreadsheets</h2>
 					<aside class="notes" data-markdown>
-						- Spreadsheets are extremely powerful. There's a reason why they run so much for the business-world.
-						- I realized how powerful and convenient they are when a very close, non-programmer, friend of mine asked for a utility that would allow the people at his factory generate labels that runs offline. These labels would also have images for each product in their catalogue.
-						- Of course, because I'm a web dev, I suggested we build a PWA or an Electron app that has a list of products in the catalogue and text fields to enter details. Labels would be generated based on the data, and a print-view would allow the user to print these labels. All of this would take some time to build. And I'd have to do any changes as and when they would be needed.
-						- After a pause of about six seconds, he asked if we can do this using Microsoft Excel. Excel uses VBScript for programming, and I knew nothing about VBScript.
-						- Both of us looked into it and eventually we created an Excel file which had a sheet with the list of products in their catalogue, and pictures of each product would be present with the name product_code.jpg in the same directory.
-						- There would be another sheet where the user would select the product from a dropdown and enter some other details. In a third sheet, labels would be generated based on this data, and then the user could just go ahead and print the third sheet.
-						- Now this is extremely simple for a factory worker to use. It's super easy for my friend to customize this since it would only require Excel formulae. And the only "code" that exists here is some VBScript to fetch the image of a product and place it in an Excel sheet.
-						- If I had still gone with the PWA or Electron route, this would have been slightly difficult to the users and impossible for my friend to make any customizations by himself.
-						- Speaking of these customizations, these Excel formulae were as simple as one cell depending upon the value of another cell. This uses something known as "forward-referencing".
+						- Spreadsheets are **extremely powerful**. There's a reason why they **run** so much for the **business-world**.
+						- I realized how powerful and convenient they are when a **very close, non-programmer**, friend of mine asked for a utility that would allow the **people at his factory generate labels** that runs offline. These **labels would also have images** for each product in their catalogue.
+						- Of course, because I'm a web dev, I suggested we **build a PWA** or an Electron app that has a list of products in the catalogue and text fields to enter details. Labels would be generated based on the data, and a **print-view** would allow the user to print these labels. All of this would **take some time to build**. And **I'd have to do any changes** as and when they would be needed. And I hadn't even started thinking about the **release process**.
+						- After a pause of about six seconds, he asked if we can do this **using Microsoft Excel**. Excel uses **VBScript** for programming, and I knew nothing about VBScript.
+						- Both of us looked into it and eventually we **created an Excel file** which had a sheet with the **list of products** in their catalogue, and **pictures of each product** would be present with the name **`product_code.jpg` in the same directory**.
+						- There would be **another sheet** where the user would **select the product from a dropdown** and enter some other details. In a third sheet, **labels would be generated** based on this data, and then the user could just go ahead and **print the third sheet**.
+						- Now this is **extremely simple for a factory worker** to use. It's super easy for my friend to customize this since it would only require **Excel formulae**. And the only "code" that exists here is **some VBScript to fetch the image of a product** and place it in an Excel sheet.
+						- If I had still gone with the PWA or Electron route, this would have been **slightly difficult to the users** and **impossible** for my friend **to make any customizations** by himself.
+						- Speaking of these customizations, these Excel formulae were as simple as **one cell depending upon the value of another cell**. This uses something known as **"forward-referencing"**.
 					</aside>
 				</section>
 
@@ -80,14 +144,291 @@
 					<h3>Forward Referencing</h3>
 
 					<aside class="notes" data-markdown>
-						- Forward-referencing would tell the underlying system to update the value of Cell A only when the value of Cell B changes.
-						- In other words, when the value of Cell B changes, we do not want to update, or "re-render", the entire spreadsheet. We're interested in updating only those cells whose values depend on Cell B.
+						- Forward-referencing would tell the underlying system to **update the value of Cell A only when the value of Cell B changes**.
+						- In other words, when the value of Cell B changes, **we do not want to update, or "re-render"**, the entire spreadsheet. We're interested in u**pdating only those cells whose values depend on Cell B**.
+						- Imagine if the **React Reconciler** had forward-referencing.**Instead of diffing the entire subtree**, would just know **exactly what parts of the tree would have changed**.
 					</aside>
+				</section>
+
+				<section>
+					<h3>Reactive Programming</h3>
+				</section>
+				<section>
+					<pre><code class="javascript" data-trim>
+						var a = 10;
+						var b = a + 1;
+
+						// ...
+
+						a = 20;
+						b = a + 1;
+					</code></pre>
+
+					<aside class="notes" data-markdown>
+						- In the **traditional programming** paradigm, there’s no way to define a **relationship between two or more variables**. Let’s
+						say we want _b_ to always equal to _a + 1_. This would mean that we would need to **reset the value manually** every time the
+						value of _a_ changes.	
+						- Sure, we could write a **method that updates the value of a and b simultaneously** and that would be just one statement in
+						our program, but we as programmers **shouldn’t have to write the runtime** to define relationships. The code will become
+						**slightly obscure** to read if we always **use functions instead of assignment** operators in our code.
+					</aside>
+				</section>
+				<section>
+					<pre><code data-trim data-noescape class="javascript">
+						var a = 10;
+						<mark>var b ⇐ a + 1;</mark>
+
+						// ...
+
+						a = 20;
+						<mark>Assert.equal(b, 21);</mark>
+					</code></pre>
+					<aside class="notes" data-markdown>
+						- But, what if we had a **destiny operator**?
+						- This operator would allow us to **declare dependencies** among variables.
+						- And then the **runtime would automatically update** the value of _b_ every time the value of _a_ changes.
+					</aside>
+				</section>
+
+				<section>
+					<h2>DX vs. UX</h2>
+					<aside class="notes" data-markdown>
+						- Another concept that I want to talk about is the idea of good DX vs. good UX.
+						- Good DX means the code is faster to read and easier to grasp. It’s easier to maintain, and it’s easier for a beginner to
+						write.
+						- Good UX means the code has to execute as efficiently as possible, considering factors like the amount of resources
+						consumed and how quickly the user gets results of their actions.
+						- Good DX and good UX don’t have to be mutually exclusive, but as it stands, in the state of current frontend development,
+						they kind of are.
+						- Often times, as our applications get bigger, the experience gets clunkier.
+						- Animations are janky, load times are high.
+					</aside>
+				</section>
+
+				<section>
+					<img src="assets/ux_vs_dx_vanilla.png" alt="">
+					<h4>Which is easier to write and maintain?</h4>
+					<img src="assets/ux_vs_dx_react.png" alt="">
+					
+					<aside class="notes" data-markdown>
+						- Using DOM APIs directly is difficult to write, read, and maintain.
+						- The React approach is much more developer-friendly.
+					</aside>
+				</section>
+
+				<section>
+					<img src="assets/ux_vs_dx_vanilla.png" alt="">
+					<h4>Which is more performant?</h4>
+					<img src="assets/ux_vs_dx_react.png" alt="">
+
+					<aside class="notes" data-markdown>
+						- However, using DOM APIs directly is as fast as it can get.
+						- The React approach gets bloated pretty quickly, and becomes slow and janky.
+						- Sure, you can make your own optimizations or wait for the library to get better.
+						- But what if things were performant right out of the box?
+					</aside>
+				</section>
+
+				<section>
+					<h3 data-markdown>When the `input` event is fired</h3>
+					<div class="split">
+						<div class="column comparision">
+							<h4>Using the DOM APIs directly</h4>
+							<ol>
+								<li data-markdown>Update the `&lt;span&gt;` in the actual DOM</li>
+							</ol>
+						</div>
+
+						<div class="column comparision">
+							<h5>Using a Virtual DOM</h5>
+							<ol>
+								<li>Update the state</li>
+								<li>Rerender the VDOM</li>
+								<li>Reconcile and figure out what changed</li>
+								<li data-markdown>Update the `&lt;span&gt;` in the actual DOM</li>
+							</ol>
+						</div>
+					</div>
+					<div class="fragment split">
+						<div class="column comparision">... better for users</div>
+						<div class="column comparision">... better for developers</div>
+					</div>
+
+					<aside class="notes" data-markdown>
+						- Let’s take a look at all the things that happen in the background here when we use DOM APIs directly vs. when we use a Virtual DOM library.
+						- With a VDOM library, we update the state.
+						- The library then renders the new VDOM, and then figures out what to update using it's reconciliation algorithm.
+						- Once it has the diff, it goes ahead and updates the acutal DOM.
+						- While with the vanilla approach, we do the last step directly.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Best of both worlds</h2>
+					<ul class="fragment text-center" style="list-style-type: none;">
+						<li>Write JSX</li>
+						<li>Lifecycles</li>
+						<li class="fragment">BUT, compile to Native DOM API calls</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>No runtime? &#x1F914</h3>
+					<aside class="notes" data-markdown>
+						- And what if there was no runtime shipped to the user?
+						- What if everything was compiled to native APIs and the application could get bootstrapped quickly on the users’ devices?
+						- This is the primary proposition of Svelte.
+					</aside>
+				</section>
+
+				<section>
+					<img src="assets/import_react.png" alt="">
+					<aside class="notes" data-markdown>
+						- If you’re compiling to native API calls without shipping a runtime to your users, you wouldn’t need to include a runtime in your Components’ code.
+					</aside>
+				</section>
+
+				<section>
+					<h3>React and Virtual DOM</h3>
+					<aside class="notes" data-markdown>
+						- Let's talk about React.
+						- The name of "React" makes it sound like it's reactive, but it really not _reactive_.
+						- When you change something in a React application, it goes through the reconciler and the Virtual DOM, which then traverses the subtree and figures out what to update.
+						- This is slow.
+					</aside>
+				</section>
+				
+				<section>
+					<h3>Abstraction Leaks</h3>
+					<ol class="fragment">
+						<li>shouldComponentUpdate</li>
+						<li>React.PureComponent</li>
+						<li>useMemo</li>
+						<li>useCallback</li>
+					</ol>
+					<aside class="notes" data-markdown>
+						- Because the Virtual DOM is slow, React expects the programmers to tell it when to optimize.
+						- Things like shouldComponentUpdate, React.PureComponent, useMemo, and useCallback are proof of that.
+					</aside>
+				</section>
+
+				<section class="example">
+					<iframe src="https://codesandbox.io/embed/charming-galileo-g4s2h?fontsize=14"
+						sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+					<aside class="notes" data-markdown>
+						- I have this React app here which shows takes the name in an input field, and has a counter for the number of times I've clicked the button.
+					</aside>
+				</section>
+
+				<section class="example">
+					<iframe src="https://svelte.dev/repl/f232dc9d30004fbfaa0cc159ffd26505?version=3.12.1" frameborder="0"></iframe>
+					<aside class="notes" data-markdown>
+						- Here's an equivalent Svelte app.
+						- Notice the similarities.
+						- Because we are reactive, we can reassign the variables directly.
+						- And because we have two-way data-binding, I can just bind the _name_ to this input field.
+						- The Svelte code to do the same thing is arguably smaller.
+						- And if you look at both side-by-side, you'll see that the Svelte code is closer to how someone would write HTML.
+						- This makes it easier for beginners who are familiar with the HTML way of doing things to get started with Svelte.
+						- This could also make it easier for people who are not primarily developers to make changes to the app.
+					</aside>
+				</section>
+
+				<section>
+					<blockquote class="twitter-tweet">
+						<p lang="en" dir="ltr">Completely agree! One great thing about Svelte is I’ve been able to use it to collaborate on
+							projects with people who don’t consider themselves developers, but know a little HTML. It’s not scary to edit the
+							document for them, in the way JSX is. <a href="https://t.co/RYL7JrKv47">https://t.co/RYL7JrKv47</a></p>&mdash; Aliza
+						Aufrichtig (@alizauf) <a href="https://twitter.com/alizauf/status/1108693398767190017?ref_src=twsrc%5Etfw">March 21,
+							2019</a>
+					</blockquote>
+				</section>
+
+				<section>
+					<blockquote class="twitter-tweet">
+						<p lang="en" dir="ltr">The <a href="https://twitter.com/sveltejs?ref_src=twsrc%5Etfw">@sveltejs</a> counter demo in a
+							single tweet:<br><br>```<br>&lt;script&gt;<br>let count = 0;<br>&lt;/script&gt;<br>&lt;button on:click={e =&gt;
+							count++}&gt;+1<br>&lt;/button&gt;<br>&lt;button on:click={e =&gt;
+							count--}&gt;-1<br>&lt;/button&gt;<br>{count}<br>```</p>&mdash; John Lindquist (@johnlindquist) <a
+							href="https://twitter.com/johnlindquist/status/1120348095361929216?ref_src=twsrc%5Etfw">April 22, 2019</a>
+					</blockquote>
+				</section>
+
+				<section>
+					<div class="split">
+						<div class="column">
+							<h3>Differences with React</h3>
+						</div>
+						<div class="column">
+							<ol class="text-center" style="list-style-type: none;">
+								<li class="fragment">Reactive by default</li>
+								<li class="fragment">Compiled to DOM APIs</li>
+								<li class="fragment">No runtime</li>
+								<li class="fragment">First-class support for CSS animations</li>
+								<li class="fragment">Two-way binding</li>
+								<li class="fragment">HTMLX instead of JSX</li>
+							</ol>
+						</div>
+					</div>
+
+					<aside class="notes" data-markdown>
+						- Svelte is reactive by default. So your code is closer to the way you think, and without setStates sprinkled all over.
+						- Svelte is compiled to DOM APIs, which makes it faster to bootstrap.
+						- And this, it does not have a runtime. This makes it faster to push updates to the DOM, eventually making it less memory intensive.
+						- Svelte has support for first-class CSS animations. We'll come to this bit later in the talk, but because Svelte has all of this built-in and compiled, the library does not have to worry about it's own file size. Any feature not being used by the app can simply not exist in the bundle, because the library isn't being shipped at all.
+						- There's two-way binding, which makes writing controlled inputs easier.
+						- And, it's closer to HTML than JSX is, since it uses a superset of HTML called HTMLX.
+					</aside>
+				</section>
+
+				<section data-background-image="assets/thanos.png">
+					<aside class="notes" data-markdown>
+						- It's Demo Time!
+					</aside>
+				</section>
+
+				<section>
+					<div class="split">
+						<div class="column">
+							<h3>Summary</h3>
+						</div>
+						<div class="column">
+							<ol class="text-center" style="list-style-type: none;">
+								<li class="fragment">Compiled</li>
+								<li class="fragment">Reactive</li>
+								<li class="fragment">Scoped Styles</li>
+								<li class="fragment">Transitions</li>
+							</ol>
+						</div>
+					</div>
+
+					<aside class="notes" data-markdown>
+						- To summarize it all, Svelte is
+						- Compiled from HTMLX to Native DOM API calls - and thus does not have a runtime.
+						- It's reactive by itself. You can define relationships between variables, and have them react on assignment.
+						- Uses scoped CSS. A component's style can live with it's markup and not affect everything else on the page.
+						- Has support for transitions built in. It's as simple as adding an attribute, and you can write JavaScript to generate CSS animations.
+					</aside>
+				</section>
+
+				<section>
+					<div class="split">
+						<div class="column">
+							<h3>There's more</h3>
+						</div>
+						<div class="column">
+							<ol class="text-center" style="list-style-type: none;">
+								<li class="fragment">Sapper</li>
+								<li class="fragment">Svelte Native</li>
+							</ol>
+						</div>
+					</div>
 				</section>
 			</div>
 		</div>
 
 		<script src="js/reveal.js"></script>
+		<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 		<script>
 			// More info about config & dependencies:
@@ -95,8 +436,10 @@
 			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
 				dependencies: [
-					{ src: 'plugin/markdown/marked.js' },
-					{ src: 'plugin/markdown/markdown.js' },
+					// Interpret Markdown in <section> elements
+					{ src: 'plugin/markdown/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+
 					{ src: 'plugin/notes/notes.js', async: true },
 					{ src: 'plugin/highlight/highlight.js', async: true }
 				]
