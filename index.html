@@ -72,7 +72,6 @@
 					<h4><a href="https://svelte.dev">svelte.dev</a></h4>
 
 					<aside class="notes" data-markdown>
-						- Thank you for coming out here today. It's slightly earlier in the morning than I'm used to, but not getting nervous sitting through the talks of other amazing speakers is a bonus I didn't want to let go of.
 						- Welcome to this talk about Svelte. Svelte is a **framework for building UIs**, and it's a little bit **different than the ones everyone's been using recently**
 					</aside>
 				</section>
@@ -82,18 +81,7 @@
 					<aside class="notes" data-markdown>
 						- I'm Umang. 
 						- I'm a **frontend engineer at Razorpay**.
-						- I learnt **HTML in 2005 during the holidays before starting fifth grade, before** my family even **owned a computer**.
-						- I spent years building small webpages to impress friends.
-						- I read about **CSS** while still in school but it felt **intimidating**.
-						- I'm still surprised how far I reached by **using just HTML attributes instead of CSS**.
-						- Tried learning **JavaScript** in highschool but I had **zero Computer Science knowledge**, so it felt very difficult and I **gave up**.
-						- Then, in my **first year** of college I taught myself **CSS** because I wanted to **build all these ideas** that I had in my head.
-						- And then in the **second year**, I taught myself **JavaScript**.
-						- This was **all jQuery**, by the way.
-						- I learned **React in my third year** of college, during 2016. I still hadn't worked a lot with Vanilla JS.
-						- I got **exposed to Vanilla JS during my final year** of college while working with service workers. This was the **first time** I would have **writen a Promise** by myself.
-						- Then, after joining **Razorpay**, I **started working with a lot of Vanilla JS**. Vanilla JS now somehow feels extremely **fun to write**.
-						- Some of this might **seem irrelevant now**, but I'll **come back to these** later in the talk.
+						- We've been using Svelte at Razorpay since v2.
 					</aside>
 				</section>
 
@@ -132,14 +120,7 @@
 					<h2>Reactivity and Spreadsheets</h2>
 					<aside class="notes" data-markdown>
 						- Spreadsheets are **extremely powerful**. There's a reason why they **run** so much for the **business-world**.
-						- I realized how powerful and convenient they are when a **very close, non-programmer**, friend of mine asked for a utility that would allow the **people at his factory generate labels** that runs offline. These **labels would also have images** for each product in their catalogue.
-						- Of course, because I'm a web dev, I suggested we **build a PWA** or an Electron app that has a list of products in the catalogue and text fields to enter details. Labels would be generated based on the data, and a **print-view** would allow the user to print these labels. All of this would **take some time to build**. And **I'd have to do any changes** as and when they would be needed. And I hadn't even started thinking about the **release process**.
-						- After a pause of about six seconds, he asked if we can do this **using Microsoft Excel**. Excel uses **VBScript** for programming, and I knew nothing about VBScript.
-						- Both of us looked into it and eventually we **created an Excel file** which had a sheet with the **list of products** in their catalogue, and **pictures of each product** would be present with the name **`product_code.jpg` in the same directory**.
-						- There would be **another sheet** where the user would **select the product from a dropdown** and enter some other details. In a third sheet, **labels would be generated** based on this data, and then the user could just go ahead and **print the third sheet**.
-						- Now this is **extremely simple for a factory worker** to use. It's super easy for my friend to customize this since it would only require **Excel formulae**. And the only "code" that exists here is **some VBScript to fetch the image of a product** and place it in an Excel sheet.
-						- If I had still gone with the PWA or Electron route, this would have been **slightly difficult to the users** and **impossible** for my friend **to make any customizations** by himself.
-						- Speaking of these customizations, these Excel formulae were as simple as **one cell depending upon the value of another cell**. This uses something known as **"forward-referencing"**.
+						- 
 					</aside>
 				</section>
 
@@ -285,38 +266,7 @@
 						- This is the primary proposition of Svelte.
 					</aside>
 				</section>
-
-				<section>
-					<img src="assets/import_react.png" alt="">
-					<aside class="notes" data-markdown>
-						- If you’re compiling to native API calls without shipping a runtime to your users, you wouldn’t need to include a runtime in your Components’ code.
-					</aside>
-				</section>
-
-				<section>
-					<h3>React and Virtual DOM</h3>
-					<aside class="notes" data-markdown>
-						- Let's talk about React.
-						- The name of "React" makes it sound like it's reactive, but it really not _reactive_.
-						- When you change something in a React application, it goes through the reconciler and the Virtual DOM, which then traverses the subtree and figures out what to update.
-						- This is slow.
-					</aside>
-				</section>
 				
-				<section>
-					<h3>Abstraction Leaks</h3>
-					<ol class="fragment">
-						<li>shouldComponentUpdate</li>
-						<li>React.PureComponent</li>
-						<li>useMemo</li>
-						<li>useCallback</li>
-					</ol>
-					<aside class="notes" data-markdown>
-						- Because the Virtual DOM is slow, React expects the programmers to tell it when to optimize.
-						- Things like shouldComponentUpdate, React.PureComponent, useMemo, and useCallback are proof of that.
-					</aside>
-				</section>
-
 				<section class="example">
 					<iframe src="https://codesandbox.io/embed/charming-galileo-g4s2h?fontsize=14"
 						sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
@@ -350,16 +300,6 @@
 				</section>
 
 				<section>
-					<blockquote class="twitter-tweet">
-						<p lang="en" dir="ltr">The <a href="https://twitter.com/sveltejs?ref_src=twsrc%5Etfw">@sveltejs</a> counter demo in a
-							single tweet:<br><br>```<br>&lt;script&gt;<br>let count = 0;<br>&lt;/script&gt;<br>&lt;button on:click={e =&gt;
-							count++}&gt;+1<br>&lt;/button&gt;<br>&lt;button on:click={e =&gt;
-							count--}&gt;-1<br>&lt;/button&gt;<br>{count}<br>```</p>&mdash; John Lindquist (@johnlindquist) <a
-							href="https://twitter.com/johnlindquist/status/1120348095361929216?ref_src=twsrc%5Etfw">April 22, 2019</a>
-					</blockquote>
-				</section>
-
-				<section>
 					<div class="split">
 						<div class="column">
 							<h3>Differences with React</h3>
@@ -389,21 +329,16 @@
 				<section data-background-image="assets/thanos.png">
 					<aside class="notes" data-markdown>
 						1. Basics - Templating, CSS, Nesting Components
-						1. Reactivity - Assignments and Computed values, Arrays and Objects
-						1. Props - Export, Spread
+						1. Reactivity - Assignments and Computed values
+						1. Props - Export
 						1. Blocks - If-else, Loops, Await
 						1. SSR
-						1. DOM Events - Inline, Modifiers
-						1. Components Events - dispatch, Forwarding
-						1. Bindings - Input, Number, Checkboxes, Groups, This (refs), Component Bindings
-						1. Class Directive
-						1. Slots - Regular + Fallback, Named, 
-						1. Actions - TODO
+						1. Events - DOM, Custom
+						1. Class Directives
+						1. Slots - Regular, Named
 						1. Lifecycle - onMount, onDestroy, beforeUpdate, afterUpdate
 						1. Stores - writable, readable, derived, bindings
-						1. Context API
 						1. Transitions and Animations - `transition`, `in` + `out`, Custom, Deferred, `animate:flip`
-						1. Special - `svelte:window`, `svelte:body`, `svelte:head`
 					</aside>
 				</section>
 
@@ -424,10 +359,10 @@
 
 					<aside class="notes" data-markdown>
 						- To summarize it all, Svelte is
-						- Compiled from HTMLX to Native DOM API calls - and thus does not have a runtime.
-						- It's reactive by itself. You can define relationships between variables, and have them react on assignment.
-						- Uses scoped CSS. A component's style can live with it's markup and not affect everything else on the page.
-						- Has support for transitions built in. It's as simple as adding an attribute, and you can write JavaScript to generate CSS animations.
+						1. Compiled from HTMLX to Native DOM API calls - and thus does not have a runtime.
+						1. It's reactive by itself. You can define relationships between variables, and have them react on assignment.
+						1. Uses scoped CSS. A component's style can live with it's markup and not affect everything else on the page.
+						1. Has support for transitions built in. It's as simple as adding an attribute, and you can write JavaScript to generate CSS animations.
 					</aside>
 				</section>
 
