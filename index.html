@@ -100,13 +100,13 @@
 					</aside>
 				</section>
 
-				<section>
+				<!-- <section>
 					<img src="assets/svelte_dictionary.png"" alt="The meaning of 'Svelte' in the dictionary">
 					<aside class="notes" data-markdown>
 						- "Svelte" means **slender**, and **urban**
 						- You might be wonder where have you **heard about Svelte before?** **MOVE TO NEXT SLIDE**
 					</aside>
-				</section>
+				</section> -->
 
 				<section>
 					<img src="assets/chrome_dev_summit.png" alt="Svelte mentioned at Chrome Dev Summit 2018">
@@ -133,6 +133,19 @@
 						- Imagine if the **React Reconciler** had forward-referencing.**Instead of diffing the entire subtree**, would just know **exactly what parts of the tree would have changed**.
 					</aside>
 				</section>
+
+				<section>
+					<img src="assets/spreadsheets_1.png">
+				</section>
+				<section>
+					<img src="assets/spreadsheets_2.png">
+				</section>
+				<section>
+					<img src="assets/spreadsheets_3.png">
+				</section>
+				<section>
+					<img src="assets/spreadsheets_4.png">
+				</section>s
 
 				<section>
 					<h3>Reactive Programming</h3>
@@ -259,11 +272,13 @@
 				</section>
 
 				<section>
-					<h3>No runtime? &#x1F914</h3>
+					<h3>No runtime? 🤔</h3>
 					<aside class="notes" data-markdown>
 						- And what if there was no runtime shipped to the user?
 						- What if everything was compiled to native APIs and the application could get bootstrapped quickly on the users’ devices?
 						- This is the primary proposition of Svelte.
+						- And because we're not shipping a runtime, our bundle sizes are smaller.
+						- And our apps take lesser time to bootstrap and apply updates to the DOM.
 					</aside>
 				</section>
 				
@@ -364,6 +379,43 @@
 						1. Uses scoped CSS. A component's style can live with it's markup and not affect everything else on the page.
 						1. Has support for transitions built in. It's as simple as adding an attribute, and you can write JavaScript to generate CSS animations.
 					</aside>
+				</section>
+
+				<section>
+					<div class="split">
+						<div class="column">
+							<h3>When wouldn't you use Svelte?</h3>
+						</div>
+						<div class="column">
+							<ul>
+								<li class="fragment">No TypeScript support</li>
+								<li class="fragment">No proper testing library</li>
+								<li class="fragment">Fewer plugins</li>
+								<li class="fragment">Not a lot of people know Svelte</li>
+							</ul>
+						</div>
+					</div>
+
+					<aside class="notes" data-markdown>
+						- Svelte is pretty cool, but when would you not use it?
+						- Svelte currently doesn't have officialy TypeScript support. People are working on bringing support for TS. But if this is a dealbreaker for you, you might need to wait for a bit.
+						- There's no proper testing library for Svelte yet. Most people compile individual components to individual bundles and then use JSDom, or Puppeteer, or Cypress.
+						- Because Svelte is relatively new, there are fewer third-party plugins.
+						- And not a lot of people know Svelte yet. If you're working on something that would need to be maintained by someone else who probably may not have worked with Svelte, you might want to avoid Svelte.
+					</aside>
+				</section>
+
+				<section>
+					<h2>Getting started</h2>
+					<ol>
+						<li><a href="https://svelte.dev/repl" target="_blank" rel="noopener">Svelte REPL</a></li>
+						<li>
+							<div class="monospace" style="white-space: pre-wrap;">npx degit sveltejs/template my-project
+cd my-project
+npm install
+npm run dev</div>
+						</li>
+					</ol>
 				</section>
 
 				<section>
