@@ -81,7 +81,7 @@
 					<aside class="notes" data-markdown>
 						- I'm Umang. 
 						- I'm a **frontend engineer at Razorpay**.
-						- We've been using Svelte at Razorpay since v2.
+						- We've been using Svelte v2 at Razorpay in multiple projects.
 					</aside>
 				</section>
 
@@ -94,9 +94,12 @@
 					</ol>
 					<aside class="notes" data-markdown>
 						- Let's talk about some *eras of JavaScript**.
-						- When most of us started web dev, we started out with **jQuery**. jQuery was nice because there were a lot of **inconsistencies between Browser APIs**, and it just made **manipulating the DOM easier**. Then, the ecosystem around it gave rise to **tons of plugins** that we could use to create all sorts of different user interfaces.
-						- Then came along **React**, and fundamentally changed how we wrote UI. We started thinking about parts of the **UI as components**, and extending those components using ideas like **composition**. The ecosystem around React developed too and we got **lots of libraries** that allowed us to build better UI components. Of course when I say React here, it's true for **other libraries like Vue and Angular** too. Then came along **SSR and hydration** to make our frontend apps seem faster.
-						- Now, we have to ask ourselves: **what's next?** Just like React made the libraries and frameworks before it seem _meh_, what would we be seeing in the near future that would make React and it's friends seem _meh_? Could it be a framework that **makes code easier and quicker to write**, and **runs faster with lesser processing overhead** so that we can target browsers that run on **lower-powered devices**? Could it be **_svelte_**? **MOVE TO NEXT SLIDE**
+						- When most of us started web dev, we started out with **jQuery**. jQuery was nice because there were a lot of **inconsistencies between Browser APIs**, and it just made **manipulating the DOM easier**. Now we had complex apps that lacked decent state management.
+						- Then came along **React**, and fundamentally changed how we wrote UI. We started thinking about parts of the **UI as components**, and extending those components using ideas like **composition**. Managing the state now became so much easier.
+						- jQuery and React, both, became immensely popular and gave rise to a lot of plugins and libraries around them that enabled people to build all sorts of User Interfaces.
+						- Of course when I say React here, it's true for **other libraries like Vue and Angular** too.
+						- Then came along **SSR and hydration** to make our frontend apps seem faster.
+						- Now, we have to ask ourselves: **what's next?** Just like React made the libraries and frameworks before it seem _meh_, what would we be seeing in the near future that would make React and it's friends seem _meh_? Could it be a framework that **makes code easier and quicker to write**, and **runs faster with lesser processing overhead** so that we can target browsers that run on **lower-powered devices**? Could it be **_svelte_**?
 					</aside>
 				</section>
 
@@ -120,7 +123,8 @@
 					<h2>Reactivity and Spreadsheets</h2>
 					<aside class="notes" data-markdown>
 						- Spreadsheets are **extremely powerful**. There's a reason why they **run** so much for the **business-world**.
-						- 
+						- Spreadsheets are fast. A Virtual DOM app with the same amount of UI elements would be sluggish.
+						- Spreadsheets are user-friendly. People can build powerful utilities using just formulae.
 					</aside>
 				</section>
 
@@ -129,23 +133,38 @@
 
 					<aside class="notes" data-markdown>
 						- Forward-referencing would tell the underlying system to **update the value of Cell A only when the value of Cell B changes**.
-						- In other words, when the value of Cell B changes, **we do not want to update, or "re-render"**, the entire spreadsheet. We're interested in u**pdating only those cells whose values depend on Cell B**.
-						- Imagine if the **React Reconciler** had forward-referencing.**Instead of diffing the entire subtree**, would just know **exactly what parts of the tree would have changed**.
+						- In other words, when the value of Cell B changes, **we do not want to update, or "re-render"**, the entire spreadsheet. We're interested in **updating only those cells whose values depend on Cell B**.
 					</aside>
 				</section>
 
-				<section>
+				<!-- <section>
 					<img src="assets/spreadsheets_1.png">
-				</section>
+
+					<aside class="notes" data-markdown>
+					</aside>
+				</section> -->
 				<section>
 					<img src="assets/spreadsheets_2.png">
+
+					<aside class="notes" data-markdown>
+						- Let's suppose we have a spreadsheet where the value of cell D4 is the product of cells B4 and C4.
+					</aside>
 				</section>
 				<section>
 					<img src="assets/spreadsheets_3.png">
+
+					<aside class="notes" data-markdown>
+						- The references of B4 would look like this.
+					</aside>
 				</section>
 				<section>
 					<img src="assets/spreadsheets_4.png">
-				</section>s
+
+					<aside class="notes" data-markdown>
+						- And the references of D4 would look like this. Blues are the values on which D4 depends, and reds are the cells which depend on the value of D4.
+						- Imagine if the **React Reconciler** had forward-referencing.**Instead of diffing the entire subtree**, would just know **exactly what parts of the tree would have changed**.
+					</aside>
+				</section>
 
 				<section>
 					<h3>Reactive Programming</h3>
@@ -193,14 +212,11 @@
 					<h2>DX vs. UX</h2>
 					<aside class="notes" data-markdown>
 						- Another concept that I want to talk about is the idea of good DX vs. good UX.
-						- Good DX means the code is faster to read and easier to grasp. It’s easier to maintain, and it’s easier for a beginner to
-						write.
-						- Good UX means the code has to execute as efficiently as possible, considering factors like the amount of resources
-						consumed and how quickly the user gets results of their actions.
-						- Good DX and good UX don’t have to be mutually exclusive, but as it stands, in the state of current frontend development,
-						they kind of are.
-						- Often times, as our applications get bigger, the experience gets clunkier.
-						- Animations are janky, load times are high.
+						- Good DX means the code is faster to read and easier to grasp. It’s easier to maintain, and it’s easier for beginners to write.
+						- Good UX means the code has to execute as efficiently as possible, considering factors like the amount of resources consumed and how quickly the user gets results of their actions.
+						- Good DX and good UX don’t have to be mutually exclusive, but as it stands today, they kind of are.
+						- Often times, as our applications get bigger, the experience gets clunkier. Apps are just more sluggish to use.
+						- On mobile devices where we do not have as much power and Internet bandwidth as our Desktops, animations are janky and load times are high.
 					</aside>
 				</section>
 
@@ -210,6 +226,9 @@
 					<img src="assets/ux_vs_dx_react.png" alt="">
 					
 					<aside class="notes" data-markdown>
+						- I have two snippets here.
+						- The top is Vanilla JS.
+						- The bottom is using React.
 						- Using DOM APIs directly is difficult to write, read, and maintain.
 						- The React approach is much more developer-friendly.
 					</aside>
@@ -256,8 +275,8 @@
 					<aside class="notes" data-markdown>
 						- Let’s take a look at all the things that happen in the background here when we use DOM APIs directly vs. when we use a Virtual DOM library.
 						- With a VDOM library, we update the state.
-						- The library then renders the new VDOM, and then figures out what to update using it's reconciliation algorithm.
-						- Once it has the diff, it goes ahead and updates the acutal DOM.
+						- The library then recreates the VDOM in memory and then figures out what to update using it's reconciliation algorithm.
+						- Once it has the diff, it goes ahead and updates the actual DOM.
 						- While with the vanilla approach, we do the last step directly.
 					</aside>
 				</section>
@@ -274,7 +293,7 @@
 				<section>
 					<h3>No runtime? 🤔</h3>
 					<aside class="notes" data-markdown>
-						- And what if there was no runtime shipped to the user?
+						- What if there was no runtime shipped to the user?
 						- What if everything was compiled to native APIs and the application could get bootstrapped quickly on the users’ devices?
 						- This is the primary proposition of Svelte.
 						- And because we're not shipping a runtime, our bundle sizes are smaller.
@@ -282,22 +301,39 @@
 					</aside>
 				</section>
 				
-				<section class="example">
-					<iframe src="https://codesandbox.io/embed/charming-galileo-g4s2h?fontsize=14"
-						sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe>
+				<!-- <section class="example"> -->
+				<section>
+					<!-- <iframe src="https://codesandbox.io/embed/charming-galileo-g4s2h?fontsize=14"
+						sandbox="allow-modals allow-forms allow-popups allow-scripts allow-same-origin"></iframe> -->
+					<img src="assets/react_code.png" alt="">
 					<aside class="notes" data-markdown>
 						- I have this React app here which shows takes the name in an input field, and has a counter for the number of times I've clicked the button.
 					</aside>
 				</section>
 
-				<section class="example">
-					<iframe src="https://svelte.dev/repl/f232dc9d30004fbfaa0cc159ffd26505?version=3.12.1" frameborder="0"></iframe>
+				<!-- <section class="example"> -->
+				<section>
+					<!-- <iframe src="https://svelte.dev/repl/f232dc9d30004fbfaa0cc159ffd26505?version=3.12.1" frameborder="0"></iframe> -->
+					<img src="assets/svelte_code.png" alt="">
 					<aside class="notes" data-markdown>
 						- Here's an equivalent Svelte app.
-						- Notice the similarities.
-						- Because we are reactive, we can reassign the variables directly.
-						- And because we have two-way data-binding, I can just bind the _name_ to this input field.
-						- The Svelte code to do the same thing is arguably smaller.
+						- We are reactive, we can reassign the variables directly.
+						- With two-way data-binding, I can just bind the _name_ to this input field.
+						- The Svelte code to do the same thing is more readable.
+					</aside>
+				</section>
+				
+				<section>
+					<div class="split">
+						<div class="column">
+							<img src="assets/react_code.png" alt="">
+						</div>
+						<div class="column">
+							<img src="assets/svelte_code.png" alt="">
+						</div>
+					</div>
+
+					<aside class="notes" data-markdown>
 						- And if you look at both side-by-side, you'll see that the Svelte code is closer to how someone would write HTML.
 						- This makes it easier for beginners who are familiar with the HTML way of doing things to get started with Svelte.
 						- This could also make it easier for people who are not primarily developers to make changes to the app.
@@ -312,32 +348,10 @@
 						Aufrichtig (@alizauf) <a href="https://twitter.com/alizauf/status/1108693398767190017?ref_src=twsrc%5Etfw">March 21,
 							2019</a>
 					</blockquote>
-				</section>
-
-				<section>
-					<div class="split">
-						<div class="column">
-							<h3>Differences with React</h3>
-						</div>
-						<div class="column">
-							<ol class="text-center" style="list-style-type: none;">
-								<li class="fragment">Reactive by default</li>
-								<li class="fragment">Compiled to DOM APIs</li>
-								<li class="fragment">No runtime</li>
-								<li class="fragment">First-class support for CSS animations</li>
-								<li class="fragment">Two-way binding</li>
-								<li class="fragment">HTMLX instead of JSX</li>
-							</ol>
-						</div>
-					</div>
 
 					<aside class="notes" data-markdown>
-						- Svelte is reactive by default. So your code is closer to the way you think, and without setStates sprinkled all over.
-						- Svelte is compiled to DOM APIs, which makes it faster to bootstrap.
-						- And this, it does not have a runtime. This makes it faster to push updates to the DOM, eventually making it less memory intensive.
-						- Svelte has support for first-class CSS animations. We'll come to this bit later in the talk, but because Svelte has all of this built-in and compiled, the library does not have to worry about it's own file size. Any feature not being used by the app can simply not exist in the bundle, because the library isn't being shipped at all.
-						- There's two-way binding, which makes writing controlled inputs easier.
-						- And, it's closer to HTML than JSX is, since it uses a superset of HTML called HTMLX.
+						- Aliza was a developer at Spotify when she tweeted this.
+						- One of her Product Managers was able to make changes to a component because they knew HTML.
 					</aside>
 				</section>
 
@@ -360,6 +374,67 @@
 				<section>
 					<div class="split">
 						<div class="column">
+							<h3>Differences with React</h3>
+						</div>
+						<div class="column">
+							<ol class="text-center" style="list-style-type: none;">
+								<li class="fragment">Reactive by assignments</li>
+								<li class="fragment">Compiled to DOM APIs</li>
+								<li class="fragment">No runtime</li>
+								<li class="fragment">Declarative transitions compiled to CSS animations</li>
+								<li class="fragment">Two-way binding</li>
+								<li class="fragment">HTMLX instead of JSX</li>
+							</ol>
+						</div>
+					</div>
+				
+					<aside class="notes" data-markdown>
+						- Svelte is reactive by default. So your code is closer to the way you think, and without setStates sprinkled all
+						over.
+						- Svelte is compiled to DOM APIs, which makes it faster to bootstrap.
+						- And this, it does not have a runtime. This makes it faster to push updates to the DOM, eventually making it less
+						memory intensive.
+						- You can declare CSS transitions using your JavaScript and have them compiled to CSS. Becuase it's CSS, it runs off
+						the main thread and isn't janky.
+						- There's two-way binding, which makes writing controlled inputs easier.
+						- And, it's closer to HTML than JSX is, since it uses a superset of HTML called HTMLX.
+					</aside>
+				</section>
+
+				<section>
+					<div class="split">
+						<div class="column">
+							<h3>Svelte @ Razorpay</h3>
+						</div>
+						<div class="column">
+							<ol>
+								<li class="fragment">Checkout runs in production on Svelte v2</li>
+								<li class="fragment">Checkout needs to be small</li>
+								<li class="fragment">Checkout needs to be fast</li>
+								<li class="fragment">Checkout should not conflict with your code</li>
+							</ol>
+						</div>
+					</div>
+
+					<aside class="notes" data-markdown>
+						- We have been using Svelte in production at Razorpay for about a year now.
+						- We started out with Svelte v2 on Checkout, and then started using it for other projects as well.
+						- Checkout's users aren't people with high-end devices and 100 Mbps Internet.
+						- More than 50% of Checkout's traffic comes from mobile devices. Mobile devices are severely underpowered.
+						- We needed to make our bundles small, so that the user doesn't drop off before Checkout renders.
+						- Checkout had to be smooth and fast in order to not intimidate users that are not tech-savvy.
+						- Our merchants build their websites using React, Angular, and Vue.
+						- If Checkout too had it's own Virtual DOM library, it would slow the app down.
+						- Checkout's VDOM library version could even conflict with the merchant's.
+						- We had been using templates and Vanilla JS. State management code was all over the place.
+						- Now we've moved to Svelte.
+						- Source code is smaller, iterations are faster, app is more predictable.
+					</aside>
+				</section>
+
+				<!-- <section>
+					<div class="split">
+						<div class="column">
 							<h3>Summary</h3>
 						</div>
 						<div class="column">
@@ -379,6 +454,34 @@
 						1. Uses scoped CSS. A component's style can live with it's markup and not affect everything else on the page.
 						1. Has support for transitions built in. It's as simple as adding an attribute, and you can write JavaScript to generate CSS animations.
 					</aside>
+				</section> -->
+
+				<section>
+					<div class="split">
+						<div class="column">
+							<h3>Advantages</h3>
+						</div>
+						<div class="column">
+							<ul>
+								<li class="fragment">Short, concise syntax</li>
+								<li class="fragment">Transitions compiled to CSS</li>
+								<li class="fragment">Reactivity by assignments</li>
+								<li class="fragment">Scoped styles</li>
+								<li class="fragment">DOM is the runtime</li>
+								<li class="fragment">Smaller bundles</li>
+							</ul>
+						</div>
+					</div>
+
+					<aside class="notes" data-markdown>
+						- Svelte has nice, short, concise syntax. I personally love the class directives.
+						- All our transitions are compiled to CSS. They're never janky.
+						- Reactivity happens by assignments, so it's easier to grasp.
+						- Styles are scoped. Our styling can co-exist with our markup and not interfere with the global styles.
+						- DOM is the runtime. There's no other runtime on top of the DOM. It's just faster. This makes it faster to bootstrap too.
+						- Because Svelte is a compiler and not a library shipped alongside your bundle, Svelte can have as many features as it wants. It does not have to worry about it's own bundle size.
+						- If your app is not using any of the features that Svelte has, they just won't be present in your bundle.
+					</aside>
 				</section>
 
 				<section>
@@ -388,6 +491,10 @@
 						</div>
 						<div class="column">
 							<ul>
+								<li class="fragment">.svelte files for each component</li>
+								<li class="fragment">Composition needs relearning</li>
+								<li class="fragment">Bundle size increases with # of components</li>
+								<li class="fragment">Two-way binding</li>
 								<li class="fragment">No TypeScript support</li>
 								<li class="fragment">No proper testing library</li>
 								<li class="fragment">Fewer plugins</li>
@@ -397,18 +504,22 @@
 					</div>
 
 					<aside class="notes" data-markdown>
-						- Svelte is pretty cool, but when would you not use it?
-						- Svelte currently doesn't have officialy TypeScript support. People are working on bringing support for TS. But if this is a dealbreaker for you, you might need to wait for a bit.
+						- We need a different file for each component. Unlike React, we can't have local components in the same file.
+						- Composition is slightly tricky to grasp at first.
+						- Bundle size increases with the number of components. But you can use code-splitting and it gets smaller than having
+						a library shipping with your app.
+						- Two-way binding is back. But it's optional.
+						- There's no official TypeScript support yet. You'd have to rely on writing your own hacks.
 						- There's no proper testing library for Svelte yet. Most people compile individual components to individual bundles and then use JSDom, or Puppeteer, or Cypress.
 						- Because Svelte is relatively new, there are fewer third-party plugins.
-						- And not a lot of people know Svelte yet. If you're working on something that would need to be maintained by someone else who probably may not have worked with Svelte, you might want to avoid Svelte.
+						- Not a lot of people know Svelte yet. If you're working on something that would need to be maintained by someone else who probably may not have worked with Svelte, you might want to avoid Svelte.
 					</aside>
 				</section>
 
 				<section>
 					<h2>Getting started</h2>
 					<ol>
-						<li><a href="https://svelte.dev/repl" target="_blank" rel="noopener">Svelte REPL</a></li>
+						<li>Svelte REPL: <a href="https://svelte.dev/repl" target="_blank" rel="noopener">https://svelte.dev/repl</a></li>
 						<li>
 							<div class="monospace" style="white-space: pre-wrap;">npx degit sveltejs/template my-project
 cd my-project
@@ -416,6 +527,12 @@ npm install
 npm run dev</div>
 						</li>
 					</ol>
+
+					<aside class="notes" data-markdown>
+						- But if I've managed to convince you to give Svelte a shot, you can get started by
+						1. Using the Svelte REPL. It's on the web and allows you to share code with people.
+						1. Or use this npx command to download a template and get started on your local machine.
+					</aside>
 				</section>
 
 				<section>
@@ -430,6 +547,14 @@ npm run dev</div>
 							</ol>
 						</div>
 					</div>
+
+					<aside class="notes" data-markdown>
+						- There are more projects build on Svelte that are super interesting.
+						- Sapper is a next.js-like framework for Svelte.
+						- It gives you SSR, Routing, and code-splitting out of the box.
+						- Svelte Native allows you to build mobile apps using NativeScript.
+						- It's faster than React Native and Nativescript-Vue because it does most of its work at the compile time.
+					</aside>
 				</section>
 			</div>
 		</div>
