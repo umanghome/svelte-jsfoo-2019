@@ -54,6 +54,11 @@
 				margin-left: auto;
 				margin-right: auto;
 			}
+
+			p.caption {
+				margin: 0;
+				font-size: 25%;
+			}
 		</style>
 
 		<!-- Printing and PDF exports -->
@@ -70,6 +75,8 @@
 			<div class="slides">
 				<section>
 					<img src="assets/svelte_can.jpeg" alt="">
+					<p class="caption">Image by Andrew Walpole on <a href="https://twitter.com/walpolea/status/1173975821540704256" target="_blank"
+						rel="noopener">twitter</a></p>
 				</section>
 				<section>
 					<h1>Rethinking Frontend Apps with Svelte</h1>
@@ -149,13 +156,16 @@
 				</section> -->
 				<section>
 					<img src="assets/spreadsheets_2.png">
-
+					<p class="caption">Example from Rich Harris' <a href="https://rethinking-reactivity.surge.sh/#slide=3"
+							target="_blank" rel="noopener">Rethinking Reactivity slides</a></p>
 					<aside class="notes" data-markdown>
 						- Let's suppose we have a spreadsheet where the value of cell D4 is the product of cells B4 and C4.
 					</aside>
 				</section>
 				<section>
 					<img src="assets/spreadsheets_3.png">
+					<p class="caption">Example from Rich Harris' <a href="https://rethinking-reactivity.surge.sh/#slide=3" target="_blank"
+							rel="noopener">Rethinking Reactivity slides</a></p>
 
 					<aside class="notes" data-markdown>
 						- The references of B4 would look like this.
@@ -163,6 +173,8 @@
 				</section>
 				<section>
 					<img src="assets/spreadsheets_4.png">
+					<p class="caption">Example from Rich Harris' <a href="https://rethinking-reactivity.surge.sh/#slide=3" target="_blank"
+							rel="noopener">Rethinking Reactivity slides</a></p>
 
 					<aside class="notes" data-markdown>
 						- And the references of D4 would look like this. Blues are the values on which D4 depends, and reds are the cells which depend on the value of D4.
@@ -175,6 +187,8 @@
 				</section>
 				<section>
 					<img src="assets/regular_assignment.png" alt="">
+					<p class="caption">Example from Paul Stovell's <a href="http://paulstovell.com/blog/reactive-programming"
+							target="_blank" rel="noopener">What is reactive programming?</a></p>
 					<!-- <pre><code class="javascript" data-trim>
 						var a = 10;
 						var b = a + 1;
@@ -196,6 +210,8 @@
 				</section>
 				<section>
 					<img src="assets/reactive_assignment.png" alt="">
+					<p class="caption">Example from Paul Stovell's <a href="http://paulstovell.com/blog/reactive-programming" target="_blank"
+							rel="noopener">What is reactive programming?</a></p>
 					<!-- <pre><code data-trim data-noescape class="javascript">
 						var a = 10;
 						<mark>var b ⇐ a + 1;</mark>
