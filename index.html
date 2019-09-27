@@ -15,6 +15,14 @@
 		<link rel="stylesheet" href="lib/css/a11ylight.css">
 
 		<style>
+			* {
+				font-family: "Muli", "News Cycle" !important;
+			}
+
+			h1 {
+				font-size: 3.5em !important;
+			}
+
 			.monospace {
 				font-family: monospace !important;
 			}
@@ -40,6 +48,10 @@
 			.column {
 				flex: 1;
 				width: 50%;
+			}
+
+			.column:not(.comparision):first-of-type {
+				margin-right: 50px;
 			}
 
 			.comparision {
@@ -425,6 +437,7 @@
 					<div class="split">
 						<div class="column">
 							<h3>Svelte @ Razorpay</h3>
+							<img src="assets/checkout.png" alt="Razorpay Checkout">
 						</div>
 						<div class="column">
 							<ul>
