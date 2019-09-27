@@ -33,6 +33,10 @@
 				display: flex;
 			}
 
+			.split:not(.top) {
+				align-items: center;
+			}
+
 			.column {
 				flex: 1;
 				width: 50%;
@@ -249,7 +253,7 @@
 
 				<section>
 					<h3 data-markdown>When the `input` event is fired</h3>
-					<div class="split">
+					<div class="split top">
 						<div class="column comparision">
 							<h4>Using the DOM APIs directly</h4>
 							<ol>
@@ -324,7 +328,7 @@
 				</section>
 				
 				<section>
-					<div class="split">
+					<div class="split top">
 						<div class="column">
 							<img src="assets/react_code.png" alt="">
 						</div>
@@ -377,14 +381,14 @@
 							<h3>Differences with React</h3>
 						</div>
 						<div class="column">
-							<ol class="text-center" style="list-style-type: none;">
+							<ul>
 								<li class="fragment">Reactive by assignments</li>
 								<li class="fragment">Compiled to DOM APIs</li>
 								<li class="fragment">No runtime</li>
 								<li class="fragment">Declarative transitions compiled to CSS animations</li>
 								<li class="fragment">Two-way binding</li>
 								<li class="fragment">HTMLX instead of JSX</li>
-							</ol>
+							</ul>
 						</div>
 					</div>
 				
@@ -438,12 +442,12 @@
 							<h3>Summary</h3>
 						</div>
 						<div class="column">
-							<ol class="text-center" style="list-style-type: none;">
+							<ul>
 								<li class="fragment">Compiled</li>
 								<li class="fragment">Reactive</li>
 								<li class="fragment">Scoped Styles</li>
 								<li class="fragment">Transitions</li>
-							</ol>
+							</ul>
 						</div>
 					</div>
 
@@ -541,10 +545,10 @@ npm run dev</div>
 							<h3>There's more</h3>
 						</div>
 						<div class="column">
-							<ol class="text-center" style="list-style-type: none;">
+							<ul>
 								<li class="fragment">Sapper</li>
 								<li class="fragment">Svelte Native</li>
-							</ol>
+							</ul>
 						</div>
 					</div>
 
